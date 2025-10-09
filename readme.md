@@ -14,7 +14,7 @@
 **PhyDAE** introduces a **physics-guided, degradation-adaptive expert framework** for unified remote sensing image restoration. Unlike prior "black-box" all-in-one models, PhyDAE bridges **physical imaging principles** with **learnable expert mechanisms**, achieving **interpretable, efficient, and physically consistent restoration**.
 
 <p align="center">
-  <img src="assets/flowchart.pdf" width="95%" alt="PhyDAE Architecture"/>
+  <img src="assets/flowchart.png" width="95%" alt="PhyDAE Architecture"/>
 </p>
 
 > The two-stage cascaded architecture transforms degradation cues from *implicit features* into *explicit decision signals*, enabling precise differentiation and handling of heterogeneous degradations such as **haze, noise, blur, and low-light**.
@@ -48,13 +48,13 @@
 PhyDAE consistently surpasses **10+ state-of-the-art all-in-one restoration models**, achieving both **superior performance** and **remarkable efficiency gains**.
 
 <p align="center">
-  <img src="assets/RSID.pdf" width="95%" alt="Visual Results Comparison"/>
+  <img src="assets/RSID.png" width="95%" alt="Visual Results Comparison"/>
 </p>
 <p align="center">
-  <img src="assets/RRSHID.pdf" width="95%" alt="Visual Results Comparison"/>
+  <img src="assets/RRSHID.png" width="95%" alt="Visual Results Comparison"/>
 </p>
 <p align="center">
-  <img src="assets/MDRS.pdf" width="95%" alt="Visual Results Comparison"/>
+  <img src="assets/MDRS.png" width="95%" alt="Visual Results Comparison"/>
 </p>
 
 ---
@@ -156,4 +156,5 @@ We welcome contributions! Please feel free to submit a Pull Request.
 ## 🙏 Acknowledgments
 
 This work was supported by the Heilongjiang Province Key Laboratory of Space-Air-Ground Integrated Intelligent Remote Sensing. We thank all contributors and reviewers.
+
 
