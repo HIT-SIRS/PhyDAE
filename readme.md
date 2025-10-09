@@ -1,4 +1,4 @@
-\# 🌌 PhyDAE: Physics-Guided Degradation-Adaptive Experts for All-in-One Remote Sensing Image Restoration
+#PhyDAE: Physics-Guided Degradation-Adaptive Experts for All-in-One Remote Sensing Image Restoration
 
 
 
@@ -143,6 +143,7 @@ conda activate phydae
 \# Install dependencies
 
 pip install -r requirements.txt
+
 
 
 
