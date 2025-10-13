@@ -105,6 +105,107 @@ pip install -r requirements.txt
 
 ---
 
+## 📥 Datasets & Pre-trained Weights
+
+### Benchmark Datasets
+
+We evaluate PhyDAE on the following remote sensing image restoration benchmarks:
+
+- **MD-RSID Dataset** 
+  - Download: [Official Repository](https://pan.baidu.com/s/16muzL_SVkh9es-yMJ7qDdQ?pwd=f6ci)
+
+- **MD-RRSHID Dataset** 
+  - Download: [Official Repository](https://pan.baidu.com/s/16muzL_SVkh9es-yMJ7qDdQ?pwd=f6ci)
+
+- **MDRS-Landsat Dataset** 
+  - Download: [Official Repository](https://https://github.com/colacomo/Ada4DIR)
+
+### Pre-trained Weights
+
+Download the pre-trained model checkpoints: [Download](https://pan.baidu.com/s/16muzL_SVkh9es-yMJ7qDdQ?pwd=f6ci)
+- After downloading, place it under `./src/pretrained_weight/denoise.ckpt`
+
+---
+
+## 🚀 Quick Start
+
+### Training
+
+Train PhyDAE on multiple GPUs with default settings:
+
+```bash
+# Multi-GPU training with 8 GPUs
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python src/train.py \
+  --batch_size 8 \
+  --lr 1e-4 \
+  --de_type dehaze denoise dedark deblur \
+  --trainset standard \
+  --num_gpus 8 \
+  --accum_grad 2 \
+  --data_file_dir "/your/dataset/path"
+```
+
+**Key Parameters:**
+- `batch_size`: Batch size per GPU (default: 8)
+- `lr`: Learning rate (default: 1e-4)
+- `de_type`: Degradation types to train on (dehaze, denoise, dedark, deblur)
+- `num_gpus`: Number of GPUs for distributed training (default: 8)
+- `accum_grad`: Gradient accumulation steps (default: 2)
+- `data_file_dir`: Path to your training dataset
+- `trainset`: Dataset split to use (standard/custom)
+
+**Single-GPU Training:**
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python src/train.py \
+  --batch_size 4 \
+  --lr 1e-4 \
+  --de_type dehaze denoise dedark deblur \
+  --trainset standard \
+  --num_gpus 1 \
+  --accum_grad 4 \
+  --data_file_dir "/your/dataset/path"
+```
+
+**Resume Training from Checkpoint:**
+
+```bash
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python src/train.py \
+  --batch_size 8 \
+  --lr 1e-4 \
+  --de_type dehaze denoise dedark deblur \
+  --trainset standard \
+  --num_gpus 8 \
+  --accum_grad 2 \
+  --data_file_dir "/your/dataset/path" \
+  --resume_ckpt "/path/to/checkpoint.ckpt"
+```
+
+### Testing
+
+Evaluate PhyDAE on benchmark datasets:
+
+```bash
+# Test on specific benchmark
+python src/test.py \
+  --data_file_dir "/your/dataset/path" \
+  --ckpt_path "/your/path/to/model.ckpt" \
+  --save_dir "/your/path/to/save_results" \
+  --benchmarks dehaze \
+  --de_type dehaze denoise dedark deblur \
+  --save_results
+```
+
+**Key Parameters:**
+- `data_file_dir`: Path to test dataset
+- `ckpt_path`: Path to model checkpoint
+- `save_dir`: Directory to save restoration results
+- `benchmarks`: Benchmark dataset name (dehaze/denoise/deblur/dedark)
+- `de_type`: Degradation types to test
+- `save_results`: Whether to save visual results (flag)
+
+---
+
 ## 📈 Performance Comparison
 
 PhyDAE achieves state-of-the-art results across multiple benchmark datasets:
@@ -113,6 +214,41 @@ PhyDAE achieves state-of-the-art results across multiple benchmark datasets:
 - **Speed**: 3x faster inference on average
 - **Generalization**: Superior performance on unseen degradation combinations
 - **Interpretability**: Explicit expert routing provides transparency
+
+---
+
+## 📂 Directory Structure
+
+```
+PhyDAE/
+├── src/
+│   ├── data/   
+│   ├── net/               # Model definitions
+│   │   └── phydae.py/     # Main model file
+│   ├── pretrained_weight/ # Rretrained weight
+│   ├── utils/             # Utilities
+│   ├── options.py         # Options file
+│   ├── test.py            # Test code
+│   └── train.py           # Train code
+├── dataset/               # Dataset directory
+│   ├── MD-RRSHID/   
+│   │   ├── train/     
+│   │   ├── val/     
+│   │   └── test/   
+│   ├── MD-RSID/   
+│   │   ├── train/    
+│   │   ├── val/     
+│   │   └── test/    
+│   └── MDRS-Landsat/   
+│       ├── train/     
+│       ├── val/     
+│       └── test/    
+├── checkpoints/           # Saved models
+├── logs/                  # Saved logs
+├── results/               # Test results
+├── requirements.txt       # Dependencies
+└── README.md
+```
 
 ---
 
@@ -130,7 +266,7 @@ Our work builds upon advances in:
 If you find PhyDAE useful for your research, please cite:
 
 ```bibtex
-@article{dong2024phydae,
+@article{dong2025phydae,
   title={PhyDAE: Physics-Guided Degradation-Adaptive Experts for All-in-One Remote Sensing Image Restoration},
   author={Dong, Zhe and Sun, Yuzhe and Jiang, Haochen and Liu, Tianzhu and Gu, Yanfeng},
   journal={arXiv preprint arXiv:XXXX.XXXXX},
@@ -152,9 +288,6 @@ We welcome contributions! Please feel free to submit a Pull Request.
 
 ---
 
-
 ## 🙏 Acknowledgments
 
 This work was supported by the Heilongjiang Province Key Laboratory of Space-Air-Ground Integrated Intelligent Remote Sensing. We thank all contributors and reviewers.
-
-
