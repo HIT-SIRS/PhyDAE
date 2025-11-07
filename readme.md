@@ -269,7 +269,7 @@ If you find PhyDAE useful for your research, please cite:
 @article{dong2025phydae,
   title={PhyDAE: Physics-Guided Degradation-Adaptive Experts for All-in-One Remote Sensing Image Restoration},
   author={Dong, Zhe and Sun, Yuzhe and Jiang, Haochen and Liu, Tianzhu and Gu, Yanfeng},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  journal={arXiv preprint arXiv:2510.08653},
   year={2025}
 }
 ```
@@ -289,5 +289,6 @@ We welcome contributions! Please feel free to submit a Pull Request.
 ---
 
 ## 🙏 Acknowledgments
+
 
 This work was supported by the Heilongjiang Province Key Laboratory of Space-Air-Ground Integrated Intelligent Remote Sensing. We thank all contributors and reviewers.
